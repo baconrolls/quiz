@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Results</title>
+    <style>
+        /* Add your CSS styles here */
+        /* Add more CSS styles as needed */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Results</h1>
+        <p>Score: <?php echo $_GET['score']; ?>/2</p>
+        <p><?php echo urldecode($_GET['result']); ?></p>
+    </div>
+</body>
+</html>
