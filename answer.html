@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quiz Results</title>
-    <style>
-        /* Add your CSS styles here */
-        /* Add more CSS styles as needed */
-    </style>
+  <title>Quiz Answers</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Quiz Results</h1>
-        <p>Score: <?php echo $_GET['score']; ?>/2</p>
-        <p><?php echo urldecode($_GET['result']); ?></p>
-    </div>
+  <h1>Quiz Answers</h1>
+  <p>Your score: <span id="score"></span>/2</p>
+
+  <script>
+    // Get the score from the query parameter
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const score = urlParams.get('score');
+
+    // Display the score on the page
+    const scoreDisplay = document.getElementById("score");
+    scoreDisplay.innerText = score;
+  </script>
 </body>
 </html>
