@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Page</title>
+    <style>
+        /* Add your CSS styles here */
+        /* Add more CSS styles as needed */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Time!</h1>
+        <p>Question 1: What is the capital of France?</p>
+        <label><input type="radio" name="q1" value="paris">Paris</label><br>
+        <label><input type="radio" name="q1" value="london">London</label><br>
+        <label><input type="radio" name="q1" value="berlin">Berlin</label><br>
+
+        <p>Question 2: What is 2 + 2?</p>
+        <label><input type="radio" name="q2" value="3">3</label><br>
+        <label><input type="radio" name="q2" value="4">4</label><br>
+        <label><input type="radio" name="q2" value="5">5</label><br>
+
+        <button onclick="submitQuiz()">Submit</button>
+    </div>
+
+    <script>
+        function submitQuiz() {
+            var answers = {
+                q1: document.querySelector('input[name="q1"]:checked').value,
+                q2: document.querySelector('input[name="q2"]:checked').value
+            };
+
+            var results = {
+                paris: "Correct! Paris is the capital of France.",
+                london: "Incorrect. London is the capital of the United Kingdom.",
+                berlin: "Incorrect. Berlin is the capital of Germany.",
+                3: "Incorrect. 2 + 2 equals 4.",
+                4: "Correct! 2 + 2 equals 4.",
+                5: "Incorrect. 2 + 2 does not equal 5."
+            };
+
+            var score = 0;
+            var resultMessage = "";
+
+            if (answers.q1 === "paris") {
+                score++;
+            }
+            if (answers.q2 === "4") {
+                score++;
+            }
+
+            if (score === 2) {
+                resultMessage = "Congratulations! You got both questions right!";
+            } else if (score === 1) {
+                resultMessage = "You got one question right. Keep practicing!";
+            } else {
+                resultMessage = "Oops, both answers were incorrect. Try again!";
+            }
+
+            window.location.href = "answer.html?score=" + score + "&result=" + encodeURIComponent(resultMessage);
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Results</title>
+    <style>
+        /* Add your CSS styles here */
+        .container {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        /* Add more CSS styles as needed */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Results</h1>
+        <p>Score: <?php echo $_GET['score']; ?>/2</p>
+        <p><?php echo urldecode($_GET['result']); ?></p>
+    </div>
+</body>
+</html>
+
